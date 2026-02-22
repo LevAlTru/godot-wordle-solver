@@ -29,6 +29,7 @@ func formatInput(event: InputEvent) -> String:
 		return st
 	return ""
 
+# Source: https://gist.github.com/slushman/34e60d6bc479ac8fc698df8c226e4264
 var words: Array[String] = [
   "aback",
   "abase",
