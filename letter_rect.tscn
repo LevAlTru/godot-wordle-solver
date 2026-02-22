@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bxs0nwbpicuxh"]
+
+[ext_resource type="Theme" uid="uid://diqmurunws86" path="res://letter_rectangle.tres" id="1_caldx"]
+[ext_resource type="Script" uid="uid://cojjg4c3t2obq" path="res://letter_rect.gd" id="1_gaiff"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gaiff"]
+font_size = 40
+
+[node name="LetterRect" type="Control" unique_id=1208935742]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+script = ExtResource("1_gaiff")
+GRAY_COLOR = Color(0.14901961, 0.13333334, 0.1764706, 1)
+YELLOW_COLOR = Color(0.7411765, 0.5411765, 0.36862746, 1)
+GREEN_COLOR = Color(0.19215687, 0.654902, 0.36078432, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=598454161]
+modulate = Color(0.14901961, 0.13333334, 0.1764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_caldx")
+
+[node name="Label" type="Label" parent="." unique_id=1996930374]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_gaiff")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="." unique_id=1590816077]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="LinkButton" to="." method="_on_link_button_pressed"]

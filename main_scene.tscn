@@ -1,0 +1,220 @@
+[gd_scene format=3 uid="uid://dhqjdms555q1y"]
+
+[ext_resource type="PackedScene" uid="uid://im8qdhhiifhv" path="res://word_container.tscn" id="1_0f027"]
+[ext_resource type="Script" uid="uid://crhrtykg5ff5t" path="res://many_words_container.gd" id="1_2c62f"]
+[ext_resource type="Script" uid="uid://xw51lbhfxtr4" path="res://selection.gd" id="1_gyfs4"]
+[ext_resource type="Script" uid="uid://dep8362jwnn1c" path="res://grid_text_container.gd" id="4_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://c33mwy68fj622" path="res://text_on_the_grid.tscn" id="5_8mm7a"]
+[ext_resource type="Script" uid="uid://gb6oego3xbgq" path="res://error_message.gd" id="6_hq1ik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hq1ik"]
+line_spacing = -7.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfk4m"]
+line_spacing = -3.0
+
+[node name="Control" type="Control" unique_id=1704011746]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=810062520]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06666667, 0.07058824, 0.078431375, 1)
+
+[node name="Selection" type="ColorRect" parent="." unique_id=1821716945]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -283.0
+offset_bottom = -213.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44609648, 0.5018429, 0.22920987, 1)
+script = ExtResource("1_gyfs4")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1864182567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+script = ExtResource("1_2c62f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=799611282]
+layout_mode = 2
+
+[node name="WordContainer" parent="MarginContainer/VBoxContainer" unique_id=124601365 instance=ExtResource("1_0f027")]
+layout_mode = 2
+
+[node name="WordContainer2" parent="MarginContainer/VBoxContainer" unique_id=1651187597 instance=ExtResource("1_0f027")]
+layout_mode = 2
+
+[node name="WordContainer3" parent="MarginContainer/VBoxContainer" unique_id=1711945832 instance=ExtResource("1_0f027")]
+layout_mode = 2
+
+[node name="WordContainer4" parent="MarginContainer/VBoxContainer" unique_id=793546477 instance=ExtResource("1_0f027")]
+layout_mode = 2
+
+[node name="WordContainer5" parent="MarginContainer/VBoxContainer" unique_id=626183907 instance=ExtResource("1_0f027")]
+layout_mode = 2
+
+[node name="WordContainer6" parent="MarginContainer/VBoxContainer" unique_id=1683007050 instance=ExtResource("1_0f027")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=373736723]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -112.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer2" unique_id=195734477]
+layout_mode = 2
+script = ExtResource("4_d5x1h")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2/CenterContainer" unique_id=120229793]
+layout_mode = 2
+columns = 7
+
+[node name="TextOnTheGrid" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=3708404 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid2" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1468826736 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid3" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=794373371 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid4" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1865924197 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid5" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=577392631 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid6" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1673465301 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid7" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1650161408 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid8" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=136005056 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid9" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=703311594 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid10" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=364327892 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid11" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1304478311 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid12" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=553269274 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid13" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=115091759 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid14" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=414609216 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid15" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=887896349 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid16" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1228285126 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid17" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1061733227 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid18" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1283364878 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid19" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=478348717 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid20" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1360872482 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid21" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1053375596 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid22" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=13903077 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid23" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1868713047 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid24" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=498394130 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid25" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=784759477 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid26" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=33159425 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid27" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=1985138763 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="TextOnTheGrid28" parent="MarginContainer2/CenterContainer/GridContainer" unique_id=2126064026 instance=ExtResource("5_8mm7a")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/CenterContainer" unique_id=254264124]
+modulate = Color(0.6714332, 0.73257667, 0.71853435, 1)
+custom_minimum_size = Vector2(484.54, 0)
+layout_mode = 2
+text = "Shift + Enter to view potential answers
+
+Ctrl + Shift + Enter to view answers
+that will remove a lot of potenrial answers
+
+Left click on squares after finishing a word to change colors"
+label_settings = SubResource("LabelSettings_hq1ik")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ErrorMessage" type="Label" parent="." unique_id=1812007462]
+modulate = Color(1, 0.26666668, 0.19215687, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7558333
+anchor_right = 1.0
+anchor_bottom = 0.7558333
+offset_top = -24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ERROR MESSAGE"
+label_settings = SubResource("LabelSettings_nfk4m")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 5
+script = ExtResource("6_hq1ik")
+
+[connection signal="changedSelectedWord" from="MarginContainer" to="Selection" method="_on_margin_container_changed_selected_word"]
+[connection signal="errorMessage" from="MarginContainer" to="ErrorMessage" method="_on_margin_container_error_message"]
+[connection signal="setWords" from="MarginContainer" to="MarginContainer2/CenterContainer" method="_on_margin_container_set_words"]

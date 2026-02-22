@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Wordle Solver"
+run/main_scene="uid://dhqjdms555q1y"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://bvorejrdihojf"
+
+[debug]
+
+gdscript/warnings/unassigned_variable=0
+gdscript/warnings/untyped_declaration=2
+
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=600
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
