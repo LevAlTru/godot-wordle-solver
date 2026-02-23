@@ -7,6 +7,8 @@ var NO_TEXT_COLOR : Color
 var YES_TEXT_COLOR : Color 
 @export_color_no_alpha
 var HELP_YES_TEXT_COLOR : Color 
+@export_color_no_alpha
+var UNHELPFUL_YES_TEXT_COLOR : Color 
 
 @onready
 var nowCol: Color = NO_TEXT_COLOR
@@ -26,8 +28,11 @@ func _process(delta: float) -> void:
 
 func setText(s: String, mode: Mode = Mode.POTENTIAL) -> void:
 	$Label.text = s.left(5)
-	desiredCol = NO_TEXT_COLOR if s.is_empty() else (YES_TEXT_COLOR if mode == Mode.POTENTIAL else HELP_YES_TEXT_COLOR)
+	if s.is_empty(): desiredCol = NO_TEXT_COLOR
+	elif mode == Mode.POTENTIAL: desiredCol = YES_TEXT_COLOR
+	elif mode == Mode.HELP: desiredCol = HELP_YES_TEXT_COLOR
+	elif mode == Mode.HELP_UNPROBABLE: desiredCol = UNHELPFUL_YES_TEXT_COLOR
 
 enum Mode{
-	POTENTIAL, HELP
+	POTENTIAL, HELP_UNPROBABLE, HELP
 }

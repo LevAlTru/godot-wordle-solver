@@ -9,15 +9,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func setWords(words: Array[String], mode: TextOnTheGrid.Mode) -> void:
+func setWords(words: Array) -> void:
 	var textContainers := getContainerChildren($GridContainer)
-	if mode == TextOnTheGrid.Mode.HELP:	textContainers = textContainers.slice(0, textContainers.size())
-	for i in range(textContainers.size()):
-		var wordIndex: int = max(i, roundi(i * (words.size() as float) / textContainers.size()))
-		if wordIndex < words.size():
-			textContainers[i].setText(words[wordIndex], mode)
-		else:
-			textContainers[i].setText("")
+	if words.is_empty():
+		for cont in textContainers:
+			cont.setText("")
+		return
+	var areWordsSorted := words[0] is Array
+	if not areWordsSorted:
+		for i in range(textContainers.size()):
+			var wordIndex: int = max(i, roundi(i * (words.size() as float) / textContainers.size()))
+			if wordIndex < words.size():
+				textContainers[i].setText(words[wordIndex])
+			else:
+				textContainers[i].setText("")
+			if areWordsSorted: i += 1
+	
+	else:
+		for i in range(textContainers.size()):
+			#var wordIndex: int = max(i, roundi(i * (words.size() as float) / textContainers.size()))
+			if i < words.size():
+				textContainers[i].setText(words[i][0], TextOnTheGrid.Mode.HELP if words[i][1] > 0 else TextOnTheGrid.Mode.HELP_UNPROBABLE)
+			else:
+				textContainers[i].setText("")
+			if areWordsSorted: i += 1
 
 func getContainerChildren(node: Node) -> Array[TextOnTheGrid]:
 	var c := node.get_children()
@@ -27,7 +42,7 @@ func getContainerChildren(node: Node) -> Array[TextOnTheGrid]:
 			t.append(cchi)
 	return t
 
-func _on_margin_container_set_words(words: Array[String], mode: TextOnTheGrid.Mode) -> void:
-	setWords(words, mode)
+func _on_margin_container_set_words(words: Array) -> void:
+	setWords(words)
 	$Label.modulate.a = 1 if words.is_empty() else 0
 	pass # Replace with function body.

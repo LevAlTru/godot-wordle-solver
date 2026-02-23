@@ -2343,7 +2343,7 @@ var words: Array[String] = [
   "zonal",
 ]
 
-func getWords(context: WordSearchContext) -> WordSearchResult: # Magic function writteen in one sitting
+func getWords(context: WordSearchContext) -> WordSearchResult: # Magic function written in one sitting
 	var result := WordSearchResult.new()
 	if context._unusable: return result
 	if context.isEmpty(): 
@@ -2357,11 +2357,12 @@ func getWords(context: WordSearchContext) -> WordSearchResult: # Magic function 
 		var lettersToFind := context._yellowLetters.duplicate()
 		# Check for green letters first
 		for i in range(5):
-			if context._greyLetters.has(word[i]):
-				wordFailed = true
-				break
 			var greeny := context._greenLetters[i]
-			if greeny.is_empty(): continue
+			if greeny.is_empty():
+				if context._greyLetters.has(word[i]):
+					wordFailed = true
+					break
+				continue
 			if greeny != word[i]: 
 				#print(word + "   " + greeny)
 				wordFailed = true
@@ -2393,28 +2394,45 @@ func getWords(context: WordSearchContext) -> WordSearchResult: # Magic function 
 	result.setWords(array)
 	return result
 
-func getHelpingWords(ctx: WordSearchContext) -> Array[String]:
+func getHelpingWords(ctx: WordSearchContext) -> Array:
 	if ctx._unusable: return []
+	var dict: Dictionary[String, int] = {} 
+	for word in getWords(ctx).words:
+		for l: String in word:
+			if dict.has(l): dict[l] = dict[l] + 1
+			else: dict[l] = 1
 	var score := 0
 	var array: Array = []
 	for word in words:
-		score = 0
+		score = 100
 		var lettersToFind := ctx._yellowLetters.duplicate()
 		for i in range(5):
 			var greeny := ctx._greenLetters[i]
 			var let := word[i]
 			if word.count(let) > 1: score -=100
-			if let == greeny: score -= 15
-			if ctx._greyLetters.has(let): score -= 30
+			#if dict.has(let): score += dict[let] * 15
+			if dict.has(let): score += 15
+			if let == greeny: 
+				#dict.erase(let)
+				score -= 15
+			if ctx._greyLetters.has(let): 
+				#dict.erase(let)
+				score -= 100
 			if lettersToFind.has(let): 
+				#dict.erase(let)
 				if lettersToFind[let] > 1: lettersToFind[let] = lettersToFind[let] - 1
 				else: lettersToFind.erase(let)
-				score += 100 * ctx._yellowLetters.size() / (6 - ctx.getNonEmptyGreensCount())
-		if score >= 0:
-			array.append([word, score])
-	array.sort_custom(func(a: Array, b: Array) -> bool: return a[1] < b[1])
-	#print(array)
-	var sortedArray: Array[String] = []
-	for element: Array in array:
-		sortedArray.append(element[0])
-	return sortedArray
+				#score += 100 * ctx._yellowLetters.size() / (6 - ctx.getNonEmptyGreensCount())
+				score -= 33
+		#if score >= 0:
+		array.append([word, score])
+	#print(dict)
+	#for i in range(array.size()):
+		#var word: String = array[i][0]
+		#var dictScore := 0
+		#for let: String in word:
+			#if dict.has(let): dictScore += dict[let] * 15
+		#array[i][1] = array[i][1] + dictScore
+	array.sort_custom(func(a: Array, b: Array) -> bool: return a[1] > b[1])
+	print(array.slice(0, 200, 20))
+	return array

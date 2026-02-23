@@ -13,11 +13,6 @@ line_spacing = -7.0
 [sub_resource type="LabelSettings" id="LabelSettings_nfk4m"]
 line_spacing = -3.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_66tet"]
-font_color = Color(0.60931987, 0.6219172, 0.561612, 1)
-outline_size = 4
-outline_color = Color(0.18649867, 0.21347171, 0.07689167, 1)
-
 [node name="Control" type="Control" unique_id=1704011746]
 layout_mode = 3
 anchors_preset = 15
@@ -220,40 +215,6 @@ autowrap_mode = 3
 text_overrun_behavior = 5
 script = ExtResource("6_hq1ik")
 
-[node name="CheckButton" type="CheckButton" parent="." unique_id=416066732]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -71.99997
-offset_right = -27.99997
-offset_bottom = 24.0
-grow_horizontal = 0
-scale = Vector2(1.5, 1.5)
-focus_mode = 0
-focus_behavior_recursive = 1
-theme_override_colors/button_checked_color = Color(0.44313726, 0.79607844, 0.37254903, 1)
-theme_override_colors/button_unchecked_color = Color(0.5529412, 0.38431373, 0.6392157, 1)
-button_pressed = true
-shortcut_feedback = false
-shortcut_in_tooltip = false
-
-[node name="Label" type="Label" parent="." unique_id=225838052]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -79.0
-offset_top = 32.0
-offset_right = -1.0
-offset_bottom = 169.0
-grow_horizontal = 0
-text = "Check input for potential errors (buggy)"
-label_settings = SubResource("LabelSettings_66tet")
-horizontal_alignment = 1
-autowrap_mode = 3
-
 [connection signal="changedSelectedWord" from="MarginContainer" to="Selection" method="_on_margin_container_changed_selected_word"]
 [connection signal="errorMessage" from="MarginContainer" to="ErrorMessage" method="_on_margin_container_error_message"]
 [connection signal="setWords" from="MarginContainer" to="MarginContainer2/CenterContainer" method="_on_margin_container_set_words"]
-[connection signal="toggled" from="CheckButton" to="MarginContainer" method="_on_check_button_toggled"]

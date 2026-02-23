@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Wordle Solver"
+config/version="1.1"
 run/main_scene="uid://dhqjdms555q1y"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"

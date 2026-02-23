@@ -30,10 +30,12 @@ func addYellow(l: String) -> WordSearchContext:
 	return self
 	
 func setYellow(l: String, i: int) -> WordSearchContext:
+	i = max(0, i)
 	var let := l[0].to_lower()
 	var nteger := _yellowLetters[let] if _yellowLetters.has(let) else 0
 	_checkLetterCount(i - nteger)
-	_yellowLetters[let] = i
+	if i == 0: _yellowLetters.erase(let)
+	else: _yellowLetters[let] = i
 	return self
 	
 func addGrey(l: String) -> WordSearchContext:

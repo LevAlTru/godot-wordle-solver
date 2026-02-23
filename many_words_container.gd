@@ -37,10 +37,10 @@ func _input(event: InputEvent) -> void:
 			if i == 4 or not children[i + 1]._is_locked:
 				if helperMode:
 					var wordSearchResults := Global.getHelpingWords(self.getFullContext())
-					setWords.emit(wordSearchResults, TextOnTheGrid.Mode.HELP)
+					setWords.emit(wordSearchResults)
 				else:
 					var wordSearchResults := Global.getWords(self.getFullContext())
-					setWords.emit(wordSearchResults.words, TextOnTheGrid.Mode.POTENTIAL)
+					setWords.emit(wordSearchResults.words)
 				return
 	var input := Global.formatInput(event)
 	lastSelectedWord = selectedWord
@@ -71,30 +71,44 @@ func getWordChildren(n: Node) -> Array[Word]:
 			t.append(cchi)
 	return t
 
+var checkForErrors := true
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	checkForErrors = toggled_on
+
 func getFullContext() -> WordSearchContext:
 	var greaterContext := WordSearchContext.new()
 	var children := getWordChildren($VBoxContainer)
 	for i in range(children.size()):
+		if not children[i]._is_locked: continue
 		var context := children[i].getContext()
+		print("great: " + str(greaterContext))
+		print("     : " + str(context))
 		if context.isEmpty(): break
 		for let in context._greyLetters:
-			if greaterContext._greenLetters.has(let):
-				emitErrorMessage("ERROR: there is a letter that is both green and grey")
-				return WordSearchContext.new().makeUnusable()
-			if greaterContext._yellowLetters.has(let):
-				emitErrorMessage("ERROR: there is a letter that is both yellow and grey")
-				return WordSearchContext.new().makeUnusable()
-			greaterContext.addGrey(let)
+			#if checkForErrors:
+				#if greaterContext._greenLetters.has(let):
+					#emitErrorMessage("ERROR: there is a letter that is both green and grey")
+					#return WordSearchContext.new().makeUnusable()
+				#if greaterContext._yellowLetters.has(let):
+					#emitErrorMessage("ERROR: there is a letter that is both yellow and grey")
+					#return WordSearchContext.new().makeUnusable()
+			if not greaterContext._yellowLetters.has(let):
+				greaterContext.addGrey(let)
 		for j in range(5):
-			if not context._greenLetters[j].is_empty():
-				if not greaterContext._greenLetters[j].is_empty() and context._greenLetters[j] != greaterContext._greenLetters[j]: 
+			var let := context._greenLetters[j]
+			if not let.is_empty():
+				if checkForErrors and not greaterContext._greenLetters[j].is_empty() and let != greaterContext._greenLetters[j]: 
 					emitErrorMessage("ERROR: there is some places that have 2 green letters")
 					return WordSearchContext.new().makeUnusable()
-				greaterContext.setGreen(j, context._greenLetters[j])
+				if greaterContext._yellowLetters.has(let): greaterContext.setYellow(let, greaterContext._yellowLetters[let] - 1)
+				greaterContext.setGreen(j, let)
 		for let in context._yellowLetters:
+			#if greaterContext._greenLetters.has(let):
+				#greaterContext.setYellow(let, context._yellowLetters[let] - 1)
 			if greaterContext._yellowLetters.has(let):
 				greaterContext.setYellow(let, max(greaterContext._yellowLetters[let], context._yellowLetters[let]))
-			else: greaterContext.setYellow(let, context._yellowLetters[let])
+			else: greaterContext.setYellow(let, context._yellowLetters[let] - (1 if greaterContext._greenLetters.has(let) else 0))
 	
 	print(greaterContext)
 	return greaterContext
